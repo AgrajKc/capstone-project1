@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Debug — WHY</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+  <body>
+    <main class="page page-debug">
+      <p class="eyebrow">A personal debugging journal</p>
+      <h1 class="brand">WHY</h1>
+      <p class="quiet-progress">{{ step }} of {{ total }}</p>
+
+      <form method="post">
+        <label for="answer">{{ question.prompt }}</label>
+        <textarea
+          id="answer"
+          name="answer"
+          rows="8"
+          placeholder="{{ question.placeholder }}"
+        >{{ answer }}</textarea>
+
+        <div class="form-nav">
+          {% if step > 1 %}
+          <button type="submit" class="back-link" name="direction" value="back">
+            Previous question
+          </button>
+          {% endif %}
+          <button type="submit" class="start-btn" name="direction" value="next">
+            {% if is_last %}Save this{% else %}Continue{% endif %}
+          </button>
+        </div>
+      </form>
+
+      {% if error %}
+      <p class="note note-error">{{ error }}</p>
+      {% endif %}
+    </main>
+  </body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WHY</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+  <body>
+    <main class="page">
+      <p class="eyebrow">A personal debugging journal</p>
+      <h1>WHY</h1>
+      <p class="tagline">Debug your mistakes. Understand your patterns.</p>
+      <a class="start-btn" href="{{ url_for('debug') }}">Start Debugging</a>
+    </main>
+  </body>
+</html>

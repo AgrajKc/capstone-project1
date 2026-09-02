@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Entries — WHY</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+  <body>
+    <main class="page page-entries">
+      <p class="eyebrow">A personal debugging journal</p>
+      <h1 class="brand">WHY</h1>
+      <p class="section-title">Saved problems</p>
+
+      {% if entries %}
+      <ul class="entry-list">
+        {% for entry in entries %}
+        <li class="entry">
+          <time class="entry-date">{{ entry.created_at }}</time>
+          <p class="entry-problem">{{ entry.problem }}</p>
+          {% if entry.why_it_happened %}
+          <p class="entry-follow">
+            <span>Why</span>{{ entry.why_it_happened }}
+          </p>
+          {% endif %}
+          {% if entry.deeper_why %}
+          <p class="entry-follow">
+            <span>And why</span>{{ entry.deeper_why }}
+          </p>
+          {% endif %}
+          {% if entry.next_time %}
+          <p class="entry-follow">
+            <span>Next time</span>{{ entry.next_time }}
+          </p>
+          {% endif %}
+        </li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <p class="note">
+        Nothing saved yet. When something goes wrong, write it down and it will
+        show up here.
+      </p>
+      {% endif %}
+
+      <a class="start-btn" href="{{ url_for('debug') }}">Start Debugging</a>
+    </main>
+  </body>
+</html>
