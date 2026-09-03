@@ -125,6 +125,7 @@ def reflection_complete():
 def entries():
     search_query = request.args.get("q", "").strip()
     entries = get_all_entries()
+    message = session.pop("message", None)
 
     if search_query:
         search = search_query.lower()
@@ -141,6 +142,7 @@ def entries():
         "entries.html",
         entries=entries,
         search_query=search_query,
+        message=message,
     )
 
 
@@ -182,6 +184,8 @@ def edit_entry(entry_id):
                 next_time,
             )
 
+            session["message"] = "Reflection updated."
+
             return redirect(url_for("entries"))
 
     return render_template(
@@ -194,6 +198,7 @@ def edit_entry(entry_id):
 @app.route("/delete/<int:entry_id>", methods=["POST"])
 def delete_entry_route(entry_id):
     delete_entry(entry_id)
+    session["message"] = "Reflection deleted."
     return redirect(url_for("entries"))
 
 

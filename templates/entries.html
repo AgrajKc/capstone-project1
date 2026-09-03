@@ -23,6 +23,12 @@
     </div>
 
     <p class="section-title">Your memory book</p>
+    
+    {% if message %}
+  <div class="success-message">
+    {{ message }}
+  </div>
+{% endif %}
 
     <form method="get" action="{{ url_for('entries') }}" class="search-form">
       <input

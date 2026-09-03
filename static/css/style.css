@@ -206,6 +206,16 @@ body:has(.page-entries){align-items:flex-start}
 }
 
 
+/* Success Message */
+
+.success-message{
+  margin-top:1rem;padding:.75rem 1rem;
+  border-left:2px solid #c45c4a;
+  background:#f7ede1;color:#5c4e3f;
+  font-size:.85rem;line-height:1.4
+}
+
+
 /* Search */
 
 .search-form{
