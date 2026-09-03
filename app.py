@@ -4,7 +4,6 @@ from db import add_entry, delete_entry, get_all_entries, init_db, update_entry
 
 app = Flask(__name__)
 
-# Needed so Flask can remember in-progress answers between questions.
 app.secret_key = "why-local-learning-key"
 
 init_db()
@@ -13,22 +12,26 @@ QUESTIONS = [
     {
         "key": "problem",
         "prompt": "What went wrong?",
-        "placeholder": "Don't make it sound perfect. Just tell me what happened.",
+        "stage": "Start with the facts",
+        "placeholder": "Start with what actually happened. Don't worry about making it sound perfect.",
     },
     {
         "key": "why_it_happened",
         "prompt": "Why do you think it happened?",
-        "placeholder": "What's the first reason that comes to mind?",
+        "stage": "Find the cause",
+        "placeholder": "You know what happened. Now look for the reason behind it.",
     },
     {
         "key": "deeper_why",
         "prompt": "And why did that happen?",
+        "stage": "Go deeper",
         "placeholder": "Don't stop at the first answer. Go one layer deeper.",
     },
     {
         "key": "next_time",
         "prompt": "What would you do differently next time?",
-        "placeholder": "It doesn't have to be a big change. Start small.",
+        "stage": "Look forward",
+        "placeholder": "Turn what you discovered into something useful. Start small.",
     },
 ]
 
