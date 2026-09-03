@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -11,34 +12,46 @@
   </head>
   <body>
     <main class="page page-debug">
-      <p class="eyebrow">A personal debugging journal</p>
-      <h1 class="brand">WHY</h1>
-      <p class="quiet-progress">{{ step }} of {{ total }}</p>
+      <div class="debug-header">
+        <p class="eyebrow">A conversation with yourself</p>
+        <p class="quiet-progress">{{ step }} / {{ total }}</p>
+      </div>
 
-      <form method="post">
-        <label for="answer">{{ question.prompt }}</label>
+      <h1 class="brand">WHY</h1>
+
+      <form method="post" class="debug-form">
+        <div class="question-block">
+          <p class="question-number">Question {{ step }}</p>
+          <label for="answer">{{ question.prompt }}</label>
+          <p class="question-hint">{{ question.placeholder }}</p>
+        </div>
+
         <textarea
           id="answer"
           name="answer"
-          rows="8"
-          placeholder="{{ question.placeholder }}"
+          rows="7"
+          placeholder="Start writing..."
+          autofocus
         >{{ answer }}</textarea>
+
+        {% if error %}
+        <p class="note note-error">{{ error }}</p>
+        {% endif %}
 
         <div class="form-nav">
           {% if step > 1 %}
           <button type="submit" class="back-link" name="direction" value="back">
-            Previous question
+            ← Previous
           </button>
           {% endif %}
+
           <button type="submit" class="start-btn" name="direction" value="next">
-            {% if is_last %}Save this{% else %}Continue{% endif %}
+            {% if is_last %}Finish reflection{% else %}Keep going →{% endif %}
           </button>
         </div>
       </form>
-
-      {% if error %}
-      <p class="note note-error">{{ error }}</p>
-      {% endif %}
     </main>
   </body>
 </html>
+
+
