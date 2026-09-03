@@ -28,9 +28,11 @@ It helps you understand mistakes by asking four simple questions:
 
 ## How to Run
 
-pip install -r requirements.txt
+Download the project and open terminal in the project folder
 
-python app.py
+Type "pip install -r requirements.txt" in the terminal
+
+Type "python app.py" in the terminal
 
 Then open:
 
