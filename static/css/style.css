@@ -230,3 +230,105 @@ body:has(.page-entries) {
     width: 100%;
   }
 }
+
+/* Step 4 — conversational debugging experience */
+
+.debug-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.debug-header .eyebrow {
+  margin-bottom: 0;
+}
+
+.debug-header .quiet-progress {
+  margin-top: 0;
+  white-space: nowrap;
+}
+
+.debug-form {
+  margin-top: 2.75rem;
+}
+
+.question-block {
+  margin-bottom: 1.5rem;
+}
+
+.question-number {
+  margin-bottom: 0.6rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #a08b76;
+}
+
+.question-block label {
+  font-size: clamp(1.6rem, 4vw, 2rem);
+  line-height: 1.25;
+}
+
+.question-hint {
+  margin-top: 0.55rem;
+  color: #8a7260;
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.debug-form textarea {
+  min-height: 11rem;
+  padding: 1.2rem 1.25rem;
+  border: 1px solid #d8c7b0;
+  border-radius: 6px;
+  background: rgba(255, 250, 243, 0.75);
+  box-shadow: 0 2px 8px rgba(74, 52, 28, 0.04);
+}
+
+.debug-form textarea::placeholder {
+  color: #b6a28c;
+}
+
+.debug-form textarea:focus {
+  background: #fffaf3;
+}
+
+.form-nav {
+  justify-content: space-between;
+}
+
+.form-nav .start-btn {
+  min-width: 9rem;
+}
+
+.back-link {
+  font-size: 0.9rem;
+}
+
+@media (max-width: 540px) {
+  .debug-header {
+    align-items: flex-start;
+  }
+
+  .debug-form {
+    margin-top: 2.25rem;
+  }
+
+  .question-block label {
+    font-size: 1.5rem;
+  }
+
+  .form-nav {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  .form-nav .start-btn {
+    width: 100%;
+  }
+
+  .back-link {
+    align-self: center;
+  }
+}
