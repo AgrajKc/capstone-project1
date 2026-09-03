@@ -29,6 +29,7 @@ def init_db():
         row["name"]
         for row in connection.execute("PRAGMA table_info(entries)").fetchall()
     }
+
     for column in NEW_COLUMNS:
         if column not in existing:
             connection.execute(f"ALTER TABLE entries ADD COLUMN {column} TEXT")
@@ -69,8 +70,10 @@ def get_all_entries():
     connection.close()
 
     entries = []
+
     for row in rows:
         created = datetime.strptime(row["created_at"], "%Y-%m-%d %H:%M:%S")
+
         entries.append(
             {
                 "id": row["id"],
@@ -81,4 +84,38 @@ def get_all_entries():
                 "created_at": created.strftime("%d %B %Y, %I:%M %p"),
             }
         )
+
     return entries
+
+
+def update_entry(entry_id, problem, why_it_happened, deeper_why, next_time):
+    connection = get_connection()
+    connection.execute(
+        """
+        UPDATE entries
+        SET problem = ?,
+            why_it_happened = ?,
+            deeper_why = ?,
+            next_time = ?
+        WHERE id = ?
+        """,
+        (
+            problem,
+            why_it_happened,
+            deeper_why,
+            next_time,
+            entry_id,
+        ),
+    )
+    connection.commit()
+    connection.close()
+
+
+def delete_entry(entry_id):
+    connection = get_connection()
+    connection.execute(
+        "DELETE FROM entries WHERE id = ?",
+        (entry_id,),
+    )
+    connection.commit()
+    connection.close()

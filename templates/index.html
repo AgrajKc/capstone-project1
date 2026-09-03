@@ -3,18 +3,56 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>WHY</title>
+
+    <title>WHY — Make Sense of What Happened</title>
+
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='css/style.css') }}"
     />
   </head>
+
   <body>
-    <main class="page">
+    <main class="page page-home">
+
       <p class="eyebrow">A personal debugging journal</p>
+
       <h1>WHY</h1>
-      <p class="tagline">Debug your mistakes. Understand your patterns.</p>
-      <a class="start-btn" href="{{ url_for('debug') }}">Start Debugging</a>
+
+      <p class="tagline">
+        Something went wrong.<br />
+        Let's figure out why.
+      </p>
+
+      <p class="home-description">
+        WHY gives you a few quiet questions to help you understand what
+        happened, what caused it, and what you might do differently next time.
+      </p>
+
+      <p class="reflection-count">
+        {{ reflection_count }}
+        {% if reflection_count == 1 %}
+        reflection
+        {% else %}
+        reflections
+        {% endif %}
+        in your Memory Book
+      </p>
+
+      <div class="home-actions">
+        <a class="start-btn" href="{{ url_for('debug') }}">
+          Start debugging →
+        </a>
+
+        <a class="home-link" href="{{ url_for('entries') }}">
+          Open my Memory Book
+        </a>
+      </div>
+      <p class="contributors">
+        Made &amp; contributed by<br />
+        <span>Agraj Kc · Pranab Dong Lama · Biraj Nakarmi</span>
+      </p>
+      
     </main>
   </body>
 </html>
