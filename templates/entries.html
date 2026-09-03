@@ -32,6 +32,7 @@
       </div>
 
       <p class="section-title">Your memory book</p>
+
       <form method="get" action="{{ url_for('entries') }}" class="search-form">
         <input
           type="search"
@@ -40,15 +41,36 @@
           placeholder="Search your reflections..."
           aria-label="Search your reflections"
         />
-      
+
         <button type="submit">Search</button>
-      
+
         {% if search_query %}
           <a href="{{ url_for('entries') }}" class="clear-search">Clear</a>
         {% endif %}
       </form>
 
-      {% if entries %}
+      {% if search_query and not entries %}
+
+      <div class="empty-memory">
+
+        <p class="empty-title">
+          No reflections found.
+        </p>
+
+        <p class="note">
+          Nothing in your Memory Book matches "{{ search_query }}".
+        </p>
+
+        <a
+          class="home-link"
+          href="{{ url_for('entries') }}"
+        >
+          Clear search
+        </a>
+
+      </div>
+
+      {% elif entries %}
 
       <div class="memory-list">
 
@@ -66,7 +88,6 @@
             </time>
           </div>
 
-
           <div class="memory-content">
 
             <p class="memory-label">
@@ -76,7 +97,6 @@
             <h2 class="entry-title">
               {{ entry.problem }}
             </h2>
-
 
             <div class="memory-answer">
 
@@ -90,7 +110,6 @@
 
             </div>
 
-
             <div class="memory-answer">
 
               <span>
@@ -102,7 +121,6 @@
               </p>
 
             </div>
-
 
             <div class="memory-answer memory-next">
 
@@ -118,8 +136,14 @@
 
           </div>
 
-
           <div class="entry-actions">
+
+            <a
+              href="{{ url_for('view_entry', entry_id=entry.id) }}"
+              class="read-btn"
+            >
+              Read reflection →
+            </a>
 
             <a
               href="{{ url_for('edit_entry', entry_id=entry.id) }}"
@@ -175,7 +199,6 @@
       </div>
 
       {% endif %}
-
 
       <div class="memory-footer">
 

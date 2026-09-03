@@ -144,6 +144,17 @@ def entries():
     )
 
 
+@app.route("/view/<int:entry_id>")
+def view_entry(entry_id):
+    entries = get_all_entries()
+    entry = next((item for item in entries if item["id"] == entry_id), None)
+
+    if entry is None:
+        return redirect(url_for("entries"))
+
+    return render_template("view.html", entry=entry)
+
+
 @app.route("/edit/<int:entry_id>", methods=["GET", "POST"])
 def edit_entry(entry_id):
     entries = get_all_entries()
