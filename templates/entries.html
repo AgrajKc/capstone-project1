@@ -1,182 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Memory Book — WHY</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
 
-    <title>Memory Book — WHY</title>
+<body>
+  <main class="page page-entries">
 
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='css/style.css') }}"
-    />
-  </head>
-
-  <body>
-    <main class="page page-entries">
-
-      <div class="memory-header">
-        <div>
-          <p class="eyebrow">A personal debugging journal</p>
-          <h1 class="brand">WHY</h1>
-        </div>
-
-        <p class="memory-count">
-          {{ entries|length }}
-          {% if entries|length == 1 %}
-          reflection
-          {% else %}
-          reflections
-          {% endif %}
-        </p>
+    <div class="memory-header">
+      <div>
+        <p class="eyebrow">A personal debugging journal</p>
+        <h1 class="brand">WHY</h1>
       </div>
 
-      <p class="section-title">Your memory book</p>
+      <p class="memory-count">
+        {{ entries|length }}
+        {% if entries|length == 1 %}reflection{% else %}reflections{% endif %}
+      </p>
+    </div>
 
-      <form method="get" action="{{ url_for('entries') }}" class="search-form">
-        <input
-          type="search"
-          name="q"
-          value="{{ search_query }}"
-          placeholder="Search your reflections..."
-          aria-label="Search your reflections"
-        />
+    <p class="section-title">Your memory book</p>
 
-        <button type="submit">Search</button>
+    <form method="get" action="{{ url_for('entries') }}" class="search-form">
+      <input
+        type="search"
+        name="q"
+        value="{{ search_query }}"
+        placeholder="Search your reflections..."
+        aria-label="Search your reflections"
+      >
 
-        {% if search_query %}
-          <a href="{{ url_for('entries') }}" class="clear-search">Clear</a>
-        {% endif %}
-      </form>
+      <button type="submit">Search</button>
 
-      {% if search_query and not entries %}
+      {% if search_query %}
+        <a href="{{ url_for('entries') }}" class="clear-search">Clear</a>
+      {% endif %}
+    </form>
+
+    {% if search_query and not entries %}
 
       <div class="empty-memory">
-
-        <p class="empty-title">
-          No reflections found.
-        </p>
+        <p class="empty-title">No reflections found.</p>
 
         <p class="note">
           Nothing in your Memory Book matches "{{ search_query }}".
         </p>
 
-        <a
-          class="home-link"
-          href="{{ url_for('entries') }}"
-        >
+        <a href="{{ url_for('entries') }}" class="home-link">
           Clear search
         </a>
-
       </div>
 
-      {% elif entries %}
+    {% elif entries %}
 
       <div class="memory-list">
 
         {% for entry in entries %}
 
-        <article class="memory-card">
+          <article class="memory-card">
 
-          <div class="memory-card-top">
-            <span class="memory-number">
-              Reflection {{ loop.index }}
-            </span>
-
-            <time class="entry-date">
-              {{ entry.created_at }}
-            </time>
-          </div>
-
-          <div class="memory-content">
-
-            <p class="memory-label">
-              What happened
-            </p>
-
-            <h2 class="entry-title">
-              {{ entry.problem }}
-            </h2>
-
-            <div class="memory-answer">
-
-              <span>
-                Why I think it happened
+            <div class="memory-card-top">
+              <span class="memory-number">
+                Reflection {{ loop.index }}
               </span>
 
-              <p>
+              <time class="entry-date">
+                {{ entry.created_at }}
+              </time>
+            </div>
+
+            <div class="memory-content">
+
+              <p class="memory-label">What happened</p>
+
+              <h2 class="entry-title">
+                {{ entry.problem }}
+              </h2>
+
+              <p class="memory-preview">
                 {{ entry.why_it_happened }}
               </p>
 
             </div>
 
-            <div class="memory-answer">
+            <div class="entry-actions">
 
-              <span>
-                Going deeper
-              </span>
-
-              <p>
-                {{ entry.deeper_why }}
-              </p>
-
-            </div>
-
-            <div class="memory-answer memory-next">
-
-              <span>
-                What I'll do next time
-              </span>
-
-              <p>
-                {{ entry.next_time }}
-              </p>
-
-            </div>
-
-          </div>
-
-          <div class="entry-actions">
-
-            <a
-              href="{{ url_for('view_entry', entry_id=entry.id) }}"
-              class="read-btn"
-            >
-              Read reflection →
-            </a>
-
-            <a
-              href="{{ url_for('edit_entry', entry_id=entry.id) }}"
-              class="edit-btn"
-            >
-              Edit
-            </a>
-
-            <form
-              method="post"
-              action="{{ url_for('delete_entry_route', entry_id=entry.id) }}"
-              class="delete-form"
-              onsubmit="return confirm('Are you sure you want to delete this reflection?');"
-            >
-
-              <button
-                type="submit"
-                class="delete-btn"
+              <a
+                href="{{ url_for('view_entry', entry_id=entry.id) }}"
+                class="read-btn"
               >
-                Delete
-              </button>
+                Read reflection →
+              </a>
 
-            </form>
+              <a
+                href="{{ url_for('edit_entry', entry_id=entry.id) }}"
+                class="edit-btn"
+              >
+                Edit
+              </a>
 
-          </div>
+              <form
+                method="post"
+                action="{{ url_for('delete_entry_route', entry_id=entry.id) }}"
+                class="delete-form"
+                onsubmit="return confirm('Are you sure you want to delete this reflection?');"
+              >
+                <button type="submit" class="delete-btn">
+                  Delete
+                </button>
+              </form>
 
-        </article>
+            </div>
+
+          </article>
 
         {% endfor %}
 
       </div>
 
-      {% else %}
+    {% else %}
 
       <div class="empty-memory">
 
@@ -189,35 +134,26 @@
           what you learned, and what you might do differently next time.
         </p>
 
-        <a
-          class="start-btn"
-          href="{{ url_for('debug') }}"
-        >
+        <a class="start-btn" href="{{ url_for('debug') }}">
           Write my first reflection →
         </a>
 
       </div>
 
-      {% endif %}
+    {% endif %}
 
-      <div class="memory-footer">
+    <div class="memory-footer">
 
-        <a
-          class="start-btn"
-          href="{{ url_for('debug') }}"
-        >
-          + New Reflection
-        </a>
+      <a class="start-btn" href="{{ url_for('debug') }}">
+        + New Reflection
+      </a>
 
-        <a
-          class="home-link"
-          href="{{ url_for('home') }}"
-        >
-          ← Back to Home
-        </a>
+      <a class="home-link" href="{{ url_for('home') }}">
+        ← Back to Home
+      </a>
 
-      </div>
+    </div>
 
-    </main>
-  </body>
+  </main>
+</body>
 </html>

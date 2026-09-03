@@ -81,8 +81,6 @@ h1{
   display:flex;align-items:center;justify-content:space-between;gap:1rem
 }
 
-.debug-header .eyebrow{margin-bottom:0}
-
 
 /* Thinking Path */
 
@@ -249,7 +247,13 @@ body:has(.page-entries){align-items:flex-start}
 
 .memory-card{
   padding:1.5rem;background:#fffaf3;border:1px solid #e4d4bf;
-  border-radius:6px;box-shadow:0 5px 18px rgba(74,52,28,.07)
+  border-radius:6px;box-shadow:0 5px 18px rgba(74,52,28,.07);
+  transition:transform .15s ease,box-shadow .15s ease
+}
+
+.memory-card:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 22px rgba(74,52,28,.1)
 }
 
 .memory-card-top{
@@ -283,32 +287,11 @@ body:has(.page-entries){align-items:flex-start}
   white-space:pre-wrap
 }
 
-.memory-answer{
-  position:relative;margin-top:1.5rem;margin-left:.35rem;
-  padding:.15rem 0 .15rem 1.25rem;border-left:2px solid #d3c2aa
+.memory-preview{
+  margin-top:.75rem;color:#6b5b4a;font-size:.9rem;line-height:1.55;
+  display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;
+  overflow:hidden
 }
-
-.memory-answer::before{
-  content:"";position:absolute;left:-5px;top:.35rem;width:8px;height:8px;
-  border-radius:50%;background:#d3c2aa
-}
-
-.memory-answer span{
-  display:block;margin-bottom:.35rem;font-size:.72rem;letter-spacing:.08em;
-  text-transform:uppercase;color:#8a7260
-}
-
-.memory-answer p{
-  line-height:1.6;color:#5c4e3f;white-space:pre-wrap
-}
-
-.memory-next{
-  padding:.9rem 1rem;border-left:2px solid #c45c4a;background:#f7ede1
-}
-
-.memory-next::before{background:#c45c4a}
-
-.memory-next p{color:#2c2416}
 
 
 /* Entry Actions */
