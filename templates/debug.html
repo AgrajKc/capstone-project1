@@ -4,6 +4,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>Debug — WHY</title>
 
     <link
@@ -14,10 +15,19 @@
 
   <body>
     <main class="page page-debug">
-<<<<<<< HEAD
       <div class="debug-header">
         <p class="eyebrow">A conversation with yourself</p>
-        <p class="quiet-progress">{{ step }} / {{ total }}</p>
+
+        <div
+          class="progress-dots"
+          aria-label="Question {{ step }} of {{ total }}"
+        >
+          {% for number in range(1, total + 1) %}
+            <span
+              class="progress-dot {% if number <= step %}active{% endif %}"
+            ></span>
+          {% endfor %}
+        </div>
       </div>
 
       <h1 class="brand">WHY</h1>
@@ -25,28 +35,16 @@
       <form method="post" class="debug-form">
         <div class="question-block">
           <p class="question-number">Question {{ step }}</p>
-          <label for="answer">{{ question.prompt }}</label>
-          <p class="question-hint">{{ question.placeholder }}</p>
+
+          <label for="answer">
+            {{ question.prompt }}
+          </label>
+
+          <p class="question-hint">
+            {{ question.placeholder }}
+          </p>
         </div>
 
-=======
-      <p class="eyebrow">A personal debugging journal</p>
-
-      <h1 class="brand">WHY</h1>
-
-      <div
-        class="progress-dots"
-        aria-label="Question {{ step }} of {{ total }}"
-      >
-        {% for number in range(1, total + 1) %}
-          <span class="{% if number <= step %}active{% endif %}"></span>
-        {% endfor %}
-      </div>
-
-      <form method="post">
-        <label for="answer">{{ question.prompt }}</label>
-
->>>>>>> 24895ca (Polish WHY reflection experience)
         <textarea
           id="answer"
           name="answer"
@@ -56,36 +54,19 @@
         >{{ answer }}</textarea>
 
         {% if error %}
-        <p class="note note-error">{{ error }}</p>
+          <p class="note note-error">{{ error }}</p>
         {% endif %}
 
         <div class="form-nav">
           {% if step > 1 %}
-<<<<<<< HEAD
-          <button type="submit" class="back-link" name="direction" value="back">
-            ← Previous
-          </button>
-          {% endif %}
-
-          <button type="submit" class="start-btn" name="direction" value="next">
-            {% if is_last %}Finish reflection{% else %}Keep going →{% endif %}
-          </button>
-        </div>
-      </form>
-    </main>
-  </body>
-</html>
-
-
-=======
-          <button
-            type="submit"
-            class="back-link"
-            name="direction"
-            value="back"
-          >
-            Previous question
-          </button>
+            <button
+              type="submit"
+              class="back-link"
+              name="direction"
+              value="back"
+            >
+              ← Previous
+            </button>
           {% endif %}
 
           <button
@@ -94,7 +75,11 @@
             name="direction"
             value="next"
           >
-            {% if is_last %}Save this{% else %}Continue{% endif %}
+            {% if is_last %}
+              Finish reflection
+            {% else %}
+              Keep going →
+            {% endif %}
           </button>
         </div>
       </form>
@@ -105,4 +90,3 @@
     </main>
   </body>
 </html>
->>>>>>> 24895ca (Polish WHY reflection experience)

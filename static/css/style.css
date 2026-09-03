@@ -1,3 +1,4 @@
+
 *,
 *::before,
 *::after {
@@ -109,7 +110,10 @@ h1 {
   text-decoration: underline;
 }
 
-/* Home */
+
+/* =========================
+   Home
+   ========================= */
 
 .page-home {
   max-width: 38rem;
@@ -144,17 +148,33 @@ h1 {
   color: #8a7260;
 }
 
-/* Debug */
+
+/* =========================
+   Debug
+   ========================= */
 
 .page-debug {
   width: min(40rem, 100%);
 }
 
+.debug-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.debug-header .eyebrow {
+  margin-bottom: 0;
+}
+
+
+/* Progress dots */
+
 .progress-dots {
   display: flex;
   align-items: center;
   gap: 0.45rem;
-  margin-top: 1rem;
 }
 
 .progress-dots span {
@@ -171,47 +191,85 @@ h1 {
   background: #c45c4a;
 }
 
-form {
-  margin-top: 1.75rem;
+
+/* Conversational questions */
+
+.debug-form {
+  margin-top: 2.75rem;
 }
 
-label {
+.question-block {
+  margin-bottom: 1.5rem;
+}
+
+.question-number {
+  margin-bottom: 0.6rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #a08b76;
+}
+
+.question-block label {
   display: block;
   font-family: Palatino, "Palatino Linotype", "Times New Roman", serif;
-  font-size: clamp(1.35rem, 3.5vw, 1.7rem);
+  font-size: clamp(1.6rem, 4vw, 2rem);
+  line-height: 1.25;
   color: #1f1810;
 }
+
+.question-hint {
+  margin-top: 0.55rem;
+  color: #8a7260;
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+
+/* Answer box */
 
 textarea {
   display: block;
   width: 100%;
   margin-top: 1rem;
-  padding: 1rem 1.1rem;
-  border: 1px solid #d3c2aa;
-  border-radius: 4px;
-  background: #fffaf3;
+  padding: 1.2rem 1.25rem;
+  min-height: 11rem;
+  border: 1px solid #d8c7b0;
+  border-radius: 6px;
+  background: rgba(255, 250, 243, 0.75);
   color: #2c2416;
   font: inherit;
   font-size: 1rem;
   line-height: 1.55;
   resize: vertical;
+  box-shadow: 0 2px 8px rgba(74, 52, 28, 0.04);
+}
+
+textarea::placeholder {
+  color: #b6a28c;
 }
 
 textarea:focus {
   outline: 2px solid #c45c4a;
   outline-offset: 2px;
   border-color: #c45c4a;
+  background: #fffaf3;
 }
+
+
+/* Form navigation */
 
 .form-nav {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: space-between;
   gap: 1rem 1.5rem;
   margin-top: 2rem;
 }
 
 .form-nav .start-btn {
+  min-width: 9rem;
   margin-top: 0;
 }
 
@@ -221,6 +279,7 @@ textarea:focus {
   background: none;
   color: #8a7260;
   font: inherit;
+  font-size: 0.9rem;
   text-decoration: none;
   cursor: pointer;
   transition: color 0.15s ease;
@@ -229,6 +288,9 @@ textarea:focus {
 .back-link:hover {
   color: #2c2416;
 }
+
+
+/* Notes / errors */
 
 .note {
   margin-top: 1.5rem;
@@ -241,7 +303,10 @@ textarea:focus {
   color: #8f3a2a;
 }
 
-/* Memory Book */
+
+/* =========================
+   Memory Book
+   ========================= */
 
 body:has(.page-entries) {
   align-items: flex-start;
@@ -367,6 +432,9 @@ body:has(.page-entries) {
   color: #2c2416;
 }
 
+
+/* Entry actions */
+
 .memory-card .entry-actions {
   display: flex;
   align-items: center;
@@ -418,6 +486,9 @@ body:has(.page-entries) {
   background: #f3dfd8;
 }
 
+
+/* Empty Memory Book */
+
 .empty-memory {
   margin-top: 2rem;
   padding: 2rem 1.5rem;
@@ -447,7 +518,10 @@ body:has(.page-entries) {
   display: block;
 }
 
-/* Completion */
+
+/* =========================
+   Completion
+   ========================= */
 
 .page-complete {
   text-align: center;
@@ -481,174 +555,15 @@ body:has(.page-entries) {
   color: #5c4e3f;
 }
 
-.complete-actions {
-  margin-top: 2.25rem;
-}
-
-.complete-actions .start-btn {
-  margin-top: 0;
-}
-
-.complete-actions .home-link {
-  display: block;
-}
-
-/* Smaller screens */
-
-@media (max-width: 540px) {
-  .page {
-    padding: 3rem 1.5rem 2.5rem 1.75rem;
-  }
-
-  .start-btn {
-    width: 100%;
-  }
-
-  .memory-header {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
-  .memory-card {
-    padding: 1.2rem;
-  }
-
-  .memory-card-top {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
-  .page-complete {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-  }
-}
-
-<<<<<<< HEAD
-/* Step 4 — conversational debugging experience */
-
-.debug-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-}
-
-.debug-header .eyebrow {
-  margin-bottom: 0;
-}
-
-.debug-header .quiet-progress {
-  margin-top: 0;
-  white-space: nowrap;
-}
-
-.debug-form {
-  margin-top: 2.75rem;
-}
-
-.question-block {
-  margin-bottom: 1.5rem;
-}
-
-.question-number {
-  margin-bottom: 0.6rem;
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #a08b76;
-}
-
-.question-block label {
-  font-size: clamp(1.6rem, 4vw, 2rem);
-  line-height: 1.25;
-}
-
-.question-hint {
-  margin-top: 0.55rem;
-  color: #8a7260;
-  font-size: 0.92rem;
-  line-height: 1.45;
-}
-
-.debug-form textarea {
-  min-height: 11rem;
-  padding: 1.2rem 1.25rem;
-  border: 1px solid #d8c7b0;
-  border-radius: 6px;
-  background: rgba(255, 250, 243, 0.75);
-  box-shadow: 0 2px 8px rgba(74, 52, 28, 0.04);
-}
-
-.debug-form textarea::placeholder {
-  color: #b6a28c;
-}
-
-.debug-form textarea:focus {
-  background: #fffaf3;
-}
-
-.form-nav {
-  justify-content: space-between;
-}
-
-.form-nav .start-btn {
-  min-width: 9rem;
-}
-
-.back-link {
-  font-size: 0.9rem;
-}
-
-@media (max-width: 540px) {
-  .debug-header {
-    align-items: flex-start;
-  }
-
-  .debug-form {
-    margin-top: 2.25rem;
-  }
-
-  .question-block label {
-    font-size: 1.5rem;
-  }
-
-  .form-nav {
-    flex-direction: column-reverse;
-    align-items: stretch;
-  }
-
-  .form-nav .start-btn {
-    width: 100%;
-  }
-
-  .back-link {
-    align-self: center;
-  }
-}
-=======
-.contributors {
-  margin-top: 3rem;
-  font-size: 0.75rem;
-  line-height: 1.7;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #9a8572;
-}
-
-.contributors span {
-  color: #6b5b4a;
-  letter-spacing: 0.04em;
-}
-
-/* Project Credits */
-
 .complete-divider {
   width: 3rem;
   height: 1px;
   margin: 2rem auto;
   background: #d3c2aa;
 }
+
+
+/* Project Credits */
 
 .project-credits {
   text-align: center;
@@ -677,4 +592,75 @@ body:has(.page-entries) {
   text-transform: uppercase;
   color: #8a7260;
 }
->>>>>>> 24895ca (Polish WHY reflection experience)
+
+.complete-actions {
+  margin-top: 2.25rem;
+}
+
+.complete-actions .start-btn {
+  margin-top: 0;
+}
+
+.complete-actions .home-link {
+  display: block;
+}
+
+
+/* =========================
+   Smaller screens
+   ========================= */
+
+@media (max-width: 540px) {
+  .page {
+    padding: 3rem 1.5rem 2.5rem 1.75rem;
+  }
+
+  .start-btn {
+    width: 100%;
+  }
+
+  .memory-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .memory-card {
+    padding: 1.2rem;
+  }
+
+  .memory-card-top {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .page-complete {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .debug-header {
+    align-items: flex-start;
+  }
+
+  .debug-form {
+    margin-top: 2.25rem;
+  }
+
+  .question-block label {
+    font-size: 1.5rem;
+  }
+
+  .form-nav {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  .form-nav .start-btn {
+    width: 100%;
+  }
+
+  .back-link {
+    align-self: center;
+  }
+}
+
