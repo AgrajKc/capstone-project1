@@ -239,7 +239,7 @@ body:has(.page-entries){align-items:flex-start}
 .clear-search:hover{color:#2c2416;text-decoration:underline}
 
 
-/* Memory Cards */
+/* Journal Cards */
 
 .memory-list{
   display:flex;flex-direction:column;gap:1.25rem;margin-top:1.75rem
@@ -256,9 +256,14 @@ body:has(.page-entries){align-items:flex-start}
   box-shadow:0 8px 22px rgba(74,52,28,.1)
 }
 
-.memory-card-top{
-  display:flex;justify-content:space-between;align-items:center;gap:1rem;
-  padding-bottom:.9rem;border-bottom:1px solid #e4d4bf
+.journal-heading{
+  display:flex;align-items:flex-start;justify-content:space-between;
+  gap:1rem;padding-bottom:1rem;border-bottom:1px solid #e4d4bf
+}
+
+.journal-label{
+  margin-top:.35rem;font-family:Palatino,"Palatino Linotype","Times New Roman",serif;
+  font-size:.9rem;font-style:italic;color:#a08b76
 }
 
 .memory-number{
@@ -267,8 +272,8 @@ body:has(.page-entries){align-items:flex-start}
 }
 
 .entry-date{
-  display:block;font-size:.78rem;letter-spacing:.08em;
-  text-transform:uppercase;color:#8a7260
+  display:block;font-size:.75rem;letter-spacing:.07em;
+  text-transform:uppercase;color:#8a7260;text-align:right;white-space:nowrap
 }
 
 .memory-content{padding-top:1.25rem}
@@ -277,9 +282,6 @@ body:has(.page-entries){align-items:flex-start}
   margin-bottom:.45rem;font-size:.75rem;letter-spacing:.08em;
   text-transform:uppercase;color:#8a7260
 }
-
-
-/* Reflection */
 
 .entry-title{
   margin-top:.35rem;font-family:Palatino,"Palatino Linotype","Times New Roman",serif;
@@ -460,7 +462,8 @@ body:has(.page-entries){align-items:flex-start}
   .start-btn{width:100%}
   .memory-header{align-items:flex-start;flex-direction:column}
   .memory-card{padding:1.2rem}
-  .memory-card-top{align-items:flex-start;flex-direction:column}
+  .journal-heading{align-items:flex-start;flex-direction:column}
+  .entry-date{text-align:left}
   .page-complete{padding-left:1.5rem;padding-right:1.5rem}
   .debug-header{align-items:flex-start}
   .debug-form{margin-top:2.25rem}

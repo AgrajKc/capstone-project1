@@ -62,19 +62,29 @@
 
           <article class="memory-card">
 
-            <div class="memory-card-top">
-              <span class="memory-number">
-                Reflection {{ loop.index }}
-              </span>
+            <div class="journal-heading">
+
+              <div>
+                <span class="memory-number">
+                  Reflection {{ loop.index }}
+                </span>
+
+                <p class="journal-label">
+                  A moment worth remembering
+                </p>
+              </div>
 
               <time class="entry-date">
                 {{ entry.created_at }}
               </time>
+
             </div>
 
             <div class="memory-content">
 
-              <p class="memory-label">What happened</p>
+              <p class="memory-label">
+                What happened
+              </p>
 
               <h2 class="entry-title">
                 {{ entry.problem }}
