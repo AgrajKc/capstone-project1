@@ -29,6 +29,7 @@ It helps you understand mistakes by asking four simple questions:
 ## How to Run
 
 pip install -r requirements.txt
+
 python app.py
 
 Then open:
