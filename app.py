@@ -123,7 +123,25 @@ def reflection_complete():
 
 @app.route("/entries")
 def entries():
-    return render_template("entries.html", entries=get_all_entries())
+    search_query = request.args.get("q", "").strip()
+    entries = get_all_entries()
+
+    if search_query:
+        search = search_query.lower()
+        entries = [
+            entry
+            for entry in entries
+            if search in entry["problem"].lower()
+            or search in entry["why_it_happened"].lower()
+            or search in entry["deeper_why"].lower()
+            or search in entry["next_time"].lower()
+        ]
+
+    return render_template(
+        "entries.html",
+        entries=entries,
+        search_query=search_query,
+    )
 
 
 @app.route("/edit/<int:entry_id>", methods=["GET", "POST"])
