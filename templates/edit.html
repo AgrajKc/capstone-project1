@@ -1,13 +1,18 @@
 <!DOCTYPE html>
+
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Edit Reflection — WHY</title>
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='css/style.css') }}"
-    />
+
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/style.css') }}"
+/>
+
+<script src="https://kit.fontawesome.com/07fec7b20f.js" crossorigin="anonymous"></script>
+
   </head>
 
   <body>
@@ -16,48 +21,52 @@
         <p class="eyebrow">Edit your reflection</p>
       </div>
 
-      <h1 class="brand">Edit</h1>
+  <h1 class="brand">Edit</h1>
 
-      <form method="post" class="edit-form">
+  <form method="post" class="edit-form">
 
-        <div class="edit-question">
-          <label for="problem">What went wrong?</label>
-          <textarea id="problem" name="problem" rows="4">{{ entry.problem }}</textarea>
-        </div>
+    <div class="edit-question">
+      <label for="problem">What went wrong?</label>
+      <textarea id="problem" name="problem" rows="4">{{ entry.problem }}</textarea>
+    </div>
 
-        <div class="edit-question">
-          <label for="why_it_happened">Why do you think it happened?</label>
-          <textarea id="why_it_happened" name="why_it_happened" rows="4">{{ entry.why_it_happened }}</textarea>
-        </div>
+    <div class="edit-question">
+      <label for="why_it_happened">Why do you think it happened?</label>
+      <textarea id="why_it_happened" name="why_it_happened" rows="4">{{ entry.why_it_happened }}</textarea>
+    </div>
 
-        <div class="edit-question">
-          <label for="deeper_why">And why did that happen?</label>
-          <textarea id="deeper_why" name="deeper_why" rows="4">{{ entry.deeper_why }}</textarea>
-        </div>
+    <div class="edit-question">
+      <label for="deeper_why">And why did that happen?</label>
+      <textarea id="deeper_why" name="deeper_why" rows="4">{{ entry.deeper_why }}</textarea>
+    </div>
 
-        <div class="edit-question">
-          <label for="next_time">What would you do differently next time?</label>
-          <textarea id="next_time" name="next_time" rows="4">{{ entry.next_time }}</textarea>
-        </div>
+    <div class="edit-question">
+      <label for="next_time">What would you do differently next time?</label>
+      <textarea id="next_time" name="next_time" rows="4">{{ entry.next_time }}</textarea>
+    </div>
 
-        {% if error %}
-        <p class="note note-error">{{ error }}</p>
-        {% endif %}
+    {% if error %}
+    <p class="note note-error">{{ error }}</p>
+    {% endif %}
 
-        <div class="form-nav">
-          <a href="{{ url_for('entries') }}" class="back-link">
-            ← Cancel
-          </a>
-
-          <button type="submit" class="start-btn">
-            Save changes
-          </button>
-        </div>
-      </form>
-
-      <a href="{{ url_for('home') }}" class="home-link">
-        ← Back to Home
+    <div class="form-nav">
+      <a href="{{ url_for('entries') }}" class="back-link">
+        <i class="fa-solid fa-xmark"></i>
+        Cancel
       </a>
-    </main>
+
+      <button type="submit" class="start-btn">
+        <i class="fa-solid fa-floppy-disk"></i>
+        Save changes
+      </button>
+    </div>
+  </form>
+
+  <a href="{{ url_for('home') }}" class="home-link">
+    <i class="fa-solid fa-arrow-left"></i>
+    Back to Home
+  </a>
+</main>
+
   </body>
 </html>

@@ -1,71 +1,79 @@
 <!DOCTYPE html>
+
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Reflection — WHY</title>
+<title>Reflection — WHY</title>
 
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='css/style.css') }}"
-    />
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/style.css') }}"
+/>
+
+<script src="https://kit.fontawesome.com/07fec7b20f.js" crossorigin="anonymous"></script>
+
   </head>
 
   <body>
     <main class="page page-view">
 
-      <div class="view-header">
-        <a href="{{ url_for('entries') }}" class="home-link">
-          ← Memory Book
-        </a>
+  <div class="view-header">
+    <a href="{{ url_for('entries') }}" class="home-link">
+      <i class="fa-solid fa-arrow-left"></i>
+      Memory Book
+    </a>
 
-        <span class="memory-number">
-          Reflection {{ entry.id }}
-        </span>
-      </div>
+    <span class="memory-number">
+      Reflection {{ entry.id }}
+    </span>
+  </div>
 
-      <p class="eyebrow">A moment to look back on</p>
+  <p class="eyebrow">A moment to look back on</p>
 
-      <time class="view-date">
-        {{ entry.created_at }}
-      </time>
+  <time class="view-date">
+    {{ entry.created_at }}
+  </time>
 
-      <div class="view-divider"></div>
+  <div class="view-divider"></div>
 
-      <section class="view-section">
-        <p class="memory-label">What happened</p>
-        <h1 class="view-title">{{ entry.problem }}</h1>
-      </section>
+  <section class="view-section">
+    <p class="memory-label">What happened</p>
+    <h1 class="view-title">{{ entry.problem }}</h1>
+  </section>
 
-      <section class="view-section">
-        <p class="memory-label">Why I think it happened</p>
-        <p class="view-answer">{{ entry.why_it_happened }}</p>
-      </section>
+  <section class="view-section">
+    <p class="memory-label">Why I think it happened</p>
+    <p class="view-answer">{{ entry.why_it_happened }}</p>
+  </section>
 
-      <section class="view-section">
-        <p class="memory-label">Going deeper</p>
-        <p class="view-answer">{{ entry.deeper_why }}</p>
-      </section>
+  <section class="view-section">
+    <p class="memory-label">Going deeper</p>
+    <p class="view-answer">{{ entry.deeper_why }}</p>
+  </section>
 
-      <section class="view-section view-next">
-        <p class="memory-label">What I'll do next time</p>
-        <p class="view-answer">{{ entry.next_time }}</p>
-      </section>
+  <section class="view-section view-next">
+    <p class="memory-label">What I'll do next time</p>
+    <p class="view-answer">{{ entry.next_time }}</p>
+  </section>
 
-      <div class="view-actions">
-        <a
-          href="{{ url_for('edit_entry', entry_id=entry.id) }}"
-          class="edit-btn"
-        >
-          Edit reflection
-        </a>
+  <div class="view-actions">
+    <a
+      href="{{ url_for('edit_entry', entry_id=entry.id) }}"
+      class="edit-btn"
+    >
+      <i class="fa-solid fa-pen"></i>
+      Edit reflection
+    </a>
 
-        <a href="{{ url_for('entries') }}" class="home-link">
-          ← Back to Memory Book
-        </a>
-      </div>
+    <a href="{{ url_for('entries') }}" class="home-link">
+      <i class="fa-solid fa-arrow-left"></i>
+      Back to Memory Book
+    </a>
+  </div>
 
-    </main>
+</main>
+
   </body>
 </html>

@@ -1,15 +1,19 @@
 <!DOCTYPE html>
+
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Debug — WHY</title>
+<title>Debug — WHY</title>
 
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='css/style.css') }}"
-    />
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/style.css') }}"
+/>
+
+<script src="https://kit.fontawesome.com/07fec7b20f.js" crossorigin="anonymous"></script>
+
   </head>
 
   <body>
@@ -18,89 +22,90 @@
         <p class="eyebrow">A conversation with yourself</p>
       </div>
 
-      <div class="thinking-path">
-        {% for number in range(1, total + 1) %}
-          <div class="path-step {% if number == step %}current{% elif number < step %}completed{% endif %}">
-            <span class="path-dot"></span>
+  <div class="thinking-path">
+    {% for number in range(1, total + 1) %}
+      <div class="path-step {% if number == step %}current{% elif number < step %}completed{% endif %}">
+        <span class="path-dot"></span>
 
-            <span class="path-label">
-              {% if number == 1 %}
-                Facts
-              {% elif number == 2 %}
-                Cause
-              {% elif number == 3 %}
-                Deeper
-              {% else %}
-                Next time
-              {% endif %}
-            </span>
-          </div>
-
-          {% if number < total %}
-            <span class="path-line {% if number < step %}completed{% endif %}"></span>
+        <span class="path-label">
+          {% if number == 1 %}
+            Facts
+          {% elif number == 2 %}
+            Cause
+          {% elif number == 3 %}
+            Deeper
+          {% else %}
+            Next time
           {% endif %}
-        {% endfor %}
+        </span>
       </div>
 
-      <h1 class="brand">WHY</h1>
+      {% if number < total %}
+        <span class="path-line {% if number < step %}completed{% endif %}"></span>
+      {% endif %}
+    {% endfor %}
+  </div>
 
-      <form method="post" class="debug-form">
-        <div class="question-block">
-          <p class="question-number">
-            {{ question.stage }}
-          </p>
+  <h1 class="brand">WHY</h1>
 
-          <label for="answer">
-            {{ question.prompt }}
-          </label>
+  <form method="post" class="debug-form">
+    <div class="question-block">
+      <p class="question-number">
+        {{ question.stage }}
+      </p>
 
-          <p class="question-hint">
-            {{ question.placeholder }}
-          </p>
-        </div>
+      <label for="answer">
+        {{ question.prompt }}
+      </label>
 
-        <textarea
-          id="answer"
-          name="answer"
-          rows="7"
-          placeholder="Start writing..."
-          autofocus
-        >{{ answer }}</textarea>
+      <p class="question-hint">
+        {{ question.placeholder }}
+      </p>
+    </div>
 
-        {% if error %}
-          <p class="note note-error">{{ error }}</p>
+    <textarea
+      id="answer"
+      name="answer"
+      rows="7"
+      placeholder="Start writing..."
+      autofocus
+    >{{ answer }}</textarea>
+
+    {% if error %}
+      <p class="note note-error">{{ error }}</p>
+    {% endif %}
+
+    <div class="form-nav">
+      {% if step > 1 %}
+        <button
+          type="submit"
+          class="back-link"
+          name="direction"
+          value="back"
+        >
+          <i class="fa-solid fa-arrow-left"></i> Previous
+        </button>
+      {% endif %}
+
+      <button
+        type="submit"
+        class="start-btn"
+        name="direction"
+        value="next"
+      >
+        {% if is_last %}
+          Finish reflection <i class="fa-solid fa-check"></i>
+        {% else %}
+          Keep going <i class="fa-solid fa-arrow-right"></i>
         {% endif %}
+      </button>
+    </div>
+  </form>
 
-        <div class="form-nav">
-          {% if step > 1 %}
-            <button
-              type="submit"
-              class="back-link"
-              name="direction"
-              value="back"
-            >
-              ← Previous
-            </button>
-          {% endif %}
+  <a href="{{ url_for('home') }}" class="home-link">
+    <i class="fa-solid fa-arrow-left"></i> Back to Home
+  </a>
+</main>
 
-          <button
-            type="submit"
-            class="start-btn"
-            name="direction"
-            value="next"
-          >
-            {% if is_last %}
-              Finish reflection
-            {% else %}
-              Keep going →
-            {% endif %}
-          </button>
-        </div>
-      </form>
-
-      <a href="{{ url_for('home') }}" class="home-link">
-        ← Back to Home
-      </a>
-    </main>
   </body>
 </html>
